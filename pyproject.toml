@@ -1,0 +1,85 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.module]
+name = "docparse"
+
+[project]
+name = "docparse"
+version = "0.1.0"
+description = "基于 VLM 的文档批量解析简易工具"
+authors = [{ name = "Wenjie Xu", email = "wenjie.xu.cn@outlook.com" }]
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Utilities",
+]
+keywords = ["OCR", "Document Parsing", "VLM", "CLI Tool"]
+dependencies = [
+    "typer",
+    "requests",
+    "typing-extensions",
+    "flit-core",
+    "python-dotenv",
+    "pdf2image",
+    "rich",
+]
+
+[project.scripts]
+docparse = "docparse.main:app"
+
+[project.urls]
+"Source Code" = "https://github.com/waynexucn/docParse/"
+"Documentation" = "https://github.com/waynexucn/docParse/blob/master/README.md"
+"Issues" = "https://github.com/waynexucn/docParse/issues"
+
+
+[tool.ruff]
+# Basic settings
+line-length = 88
+src = ["{{ cookiecutter.module_name }}"]
+include = ["pyproject.toml", "{{ cookiecutter.module_name }}/**/*.py"]
+exclude = [
+    ".eggs",
+    "*.egg-info",
+    ".git",
+    ".hg",
+    ".mypy_cache",
+    "__pycache__",
+    ".tox",
+    ".venv",
+    "build",
+    "dist",
+]
+
+[tool.ruff.lint]
+# Enabled rule sets
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # Pyflakes (syntax error checking)
+    "I",   # isort (import sorting)
+    "B",   # flake8-bugbear (common bug checking)
+    "C4",  # flake8-comprehensions (comprehension optimizations)
+    "UP",  # pyupgrade (Python version upgrade suggestions)
+    "SIM", # flake8-simplify (code simplification)
+    "Q",   # flake8-quotes (quote checking)
+]
+# Ignored rules
+ignore = [
+    "E501", # Line length (handled by formatter)
+    "B008", # Mutable default values in function arguments (sometimes needed)
+]
+
+[tool.ruff.format]
+quote-style = "double"            # Use double quotes
+indent-style = "space"            # Use space indentation
+skip-magic-trailing-comma = false # Do not skip magic trailing comma
+line-ending = "auto"              # Use automatic line ending
